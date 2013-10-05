@@ -13,9 +13,13 @@ mongoDb.open(function(err, db) {
 			}
 		});
 	}
+	else {
+		console.log("Couldn't open MongoDB: " + err);
+	}
 });
 
 exports.findAll = function(req, res) {
+	console.log(req.session)
 	mongoDb.collection('tourneys', function(err, collection) {
 		collection.find().toArray(function(err, items) {
 			res.send(items);
