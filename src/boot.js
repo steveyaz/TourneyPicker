@@ -8,6 +8,9 @@ require.config({
     TourneyPickerRouter: 'scripts/TourneyPickerRouter',
     TourneyPickerModel: 'scripts/TourneyPickerModel',
     TourneyPickerView: 'scripts/TourneyPickerView',
+    TourneyPickerPage: 'scripts/TourneyPickerPage',
+    AdminModel: 'scripts/AdminModel',
+    AdminView: 'scripts/AdminView',
     GoogleAuth: 'scripts/GoogleAuth'
   },
   shim: {

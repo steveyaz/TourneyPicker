@@ -88,7 +88,6 @@ exports.update = function(req, res) {
  
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
-// You'd typically not find this code in a real-life app, since the database would already exist.
 var populateDB = function() {
 
 	var games = [
@@ -100,18 +99,106 @@ var populateDB = function() {
 	}
 	]
 
-	var tourneys = [
+	var players = [
 	{
-		name: "WCS Korea",
-		fullname: "2013 WCS Korea Season 3",
+		handle: "Leenock",
+		name: "Real Name",
+		game: "Starcraft II"
 	},
 	{
-		name: "The International",
-		fullname: "The International 2013",
+		handle: "MVP",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "Nestea",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "Fruitdealer",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "Jaedong",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "MaruPrime",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "Rain",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	{
+		handle: "Innovation",
+		name: "Real Name",
+		game: "Starcraft II"
+	},
+	]
+
+	var tourneys = [
+	{
+		game: "Starcraft II",
+		name: "2014 WCS Korea Season 1",
+		rounds: [
+			{
+				dueDate: "2013-01-31T00:00:00",
+				format: "group4",
+				groups: [
+					{
+						players: [ "Leenock", "MVP", "Nestea", "Fruitdealer" ],
+						winners: [ "Leenock", "Nestea" ]
+					},
+					{
+						players: [ "Jaedong", "MaruPrime", "Rain", "Innovation" ],
+						winners: []
+					}
+				]
+			},
+			{
+				dueDate: "2013-02-31T00:00:00",
+				format: "bracket",
+				groups: [
+					{
+						players: [],
+						winners: []
+					},
+					{
+						players: [],
+						winners: []
+					}
+				]
+			},
+			{
+				dueDate: "2013-03-31T00:00:00",
+				format: "bracket",
+				groups: [
+					{
+						players: [],
+						winners: []
+					}
+				]
+			}
+		],
+	},
+	{
+		game: "Dota II",
+		name: "The International 2014",
+		rounds: []
 	}]
 
 	mongoDb.collection('games', function(err, collection) {
 		collection.insert(games, {safe:true}, function(err, result) {});
+	});
+
+	mongoDb.collection('players', function(err, collection) {
+		collection.insert(players, {safe:true}, function(err, result) {});
 	});
 
 	mongoDb.collection('tourneys', function(err, collection) {

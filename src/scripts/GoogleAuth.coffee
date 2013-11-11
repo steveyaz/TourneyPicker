@@ -1,8 +1,7 @@
 define([
-  'backbone'
 ], ->
 
-  class GoogleAuth extends Backbone.Model
+  class GoogleAuth
 
     signinCallback: (authResult) =>
       if authResult['access_token']?
