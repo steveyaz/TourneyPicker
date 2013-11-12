@@ -8,8 +8,8 @@ define([
 	class AdminView extends Backbone.View
 
 		events:
-			'click .new-tournament': '_newTournament'
-			'click .create-tournament': '_createTournament'
+			'click #new-tournament': '_newTournament'
+			'click #create-tournament': '_createTournament'
 			'click #add-round': '_addRound'
 			'click #remove-round': '_removeRound'
 
@@ -40,7 +40,31 @@ define([
 			@numRounds = 0
 
 		_createTournament: =>
-
+			tournament = {
+				game: $('#game').val(),
+				name: $('#name').val(),
+				rounds: [
+				]
+			}
+			for round in $('#rounds').find('.round')
+				dateParts = $(round).find('.round-duedate').val().split('/')
+				dueDate = new Date(dateParts[2], dateParts[0] - 1, dateParts[1]).toJSON()
+				roundFormat = $(round).find('.round-format').val()
+				groups = []
+				# {
+				# 	groups: [
+				# 		{
+				# 			players: [ "Leenock", "MVP", "Nestea", "Fruitdealer" ],
+				# 			winners: [ "Leenock", "Nestea" ]
+				# 		},
+				# 		{
+				# 			players: [ "Jaedong", "MaruPrime", "Rain", "Innovation" ],
+				# 			winners: []
+				# 		}
+				# 	]
+				# }
+				tournament.rounds.push { dueDate: dueDate, format: roundFormat, groups: groups }
+			console.log tournament
 
 		_addRound: =>
 			if @numRounds < 6
