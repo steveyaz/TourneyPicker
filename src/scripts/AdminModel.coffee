@@ -17,4 +17,14 @@ define([
 				error: (e) =>
 					console.log e
 
+		getGames: =>
+			$.ajax
+				type: 'GET'
+				url: 'http://localhost:3000/games'
+				async: false
+				success: (data) =>
+					@set('games', data)
+				error: (e) =>
+					console.log e
+
 )

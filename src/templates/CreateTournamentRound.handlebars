@@ -1,1 +1,11 @@
-<tr><td>{{this}}</td><td><input /></td><td><input /></td></tr>
+<tr>
+	<td>{{this}}</td>
+	<td><select>
+		<option>Bracket</option>
+		<option>Group (4)</option>
+	</select></td>
+	<td><div class="input-append date round-datepicker" data-date="dateValue: dueDate" data-date-format="mm-dd-yyyy">
+		<input class="span2" type="text" data-bind="value: dueDate" readonly="readonly" />
+    	<span class="add-on"><i class="icon-calendar"></i></span>
+    </div></td>
+</tr>

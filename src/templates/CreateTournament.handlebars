@@ -1,9 +1,17 @@
-<p>Create Tournament</p>
-<p>Name</p>
-<input id="name" />
-<p>Game</p>
-<input id="game" />
+<h2>Create Tournament</h2>
+<label>Name</label>
+<input id="name" class="input-medium" type="text" placeholder="Tournament Name" />
+<label>Game</label>
+<select id="game">
+	{{#each this}}
+		<option>{{this}}</option>
+	{{/each}}
+</select>
 <p>Rounds</p>
 <table id="rounds">
-	<tr><th>Round<button id="add-round">+</button><button id="remove-round">-</button></th><th>Format</th><th>Due Date</th></tr>
+	<tr><th>Round<i id="add-round" class="icon-plus"></i><i id="remove-round" class="icon-minus"></i></th><th>Format</th><th>Due Date</th></tr>
 </table>
+<div class="form-actions">
+  <button type="submit" class="btn btn-primary">Create</button>
+  <button type="button" class="btn">Cancel</button>
+</div>

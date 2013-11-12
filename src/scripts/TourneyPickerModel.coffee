@@ -3,14 +3,25 @@ define([
 	'backbone',
 	'TourneyPickerPage',
 	'AdminModel',
-	'AdminView'
-], ($, Backbone, TourneyPickerPage, AdminModel, AdminView) ->
+	'AdminView',
+	'OverviewModel',
+	'OverviewView'
+], ($, Backbone, TourneyPickerPage, AdminModel, AdminView, OverviewModel, OverviewView) ->
 
 	class TourneyPickerModel extends Backbone.Model
 
 		initialize: ->
 			# Create the pages
 			@pages = {}
+
+			# Create the Overview page
+			@pages.overview = new TourneyPickerPage(
+				getUrl: -> ''
+				getTitle: -> 'Tourney Picker'
+				createModel: -> @model = new OverviewModel()
+				createView: -> @view = new OverviewView(model: @model)
+				updateView: -> @model.trigger('updateData')
+			)
 
 			# Create the Admin page
 			@pages.admin = new TourneyPickerPage(

@@ -21,7 +21,7 @@ define([
 			@updateView()
 
 		destroy: =>
-			view?.remove()
+			@view?.remove()
 			@view?.off()
 			@view = null
 			@model = null

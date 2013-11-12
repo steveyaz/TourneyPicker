@@ -1,8 +1,9 @@
 define([
   'jquery',
   'backbone',
-  'templates'
-], ($, Backbone, Templates) ->
+  'templates',
+  'datepicker'
+], ($, Backbone, Templates, datepicker) ->
 
 	class AdminView extends Backbone.View
 
@@ -30,7 +31,12 @@ define([
 			@$el.html Handlebars.templates['Admin'](@model.get('tourneys'))
 
 		_newTournament: =>
-			@$el.html Handlebars.templates['CreateTournament'](@model.get('tourneys'))
+			@model.getGames()
+			games = @model.get('games')
+			gameNames = []
+			for game in games
+				gameNames.push game.name
+			@$el.html Handlebars.templates['CreateTournament'](gameNames)
 			@numRounds = 0
 
 		_createTournament: =>
@@ -39,6 +45,7 @@ define([
 		_addRound: =>
 			if @numRounds < 6
 				$('#rounds').append(Handlebars.templates['CreateTournamentRound'](@roundNames[@numRounds]))
+				$('.round-datepicker:last').datepicker()
 				@numRounds++
 
 		_removeRound: =>

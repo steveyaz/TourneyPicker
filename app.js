@@ -6,6 +6,7 @@ var watch = require('watch')
 var fs = require('fs')
 
 var auth = require('./routes/auth')
+var games = require('./routes/games')
 var tourneys = require('./routes/tourneys')
 var pools = require('./routes/pools')
 var picks = require('./routes/picks')
@@ -17,7 +18,7 @@ app.configure(function () {
 	app.use(express.logger('dev'))     /* 'default', 'short', 'tiny', 'dev' */
 	app.use(express.bodyParser())
 	app.use(express.cookieParser())
-	app.use(express.session({secret: '199G6QNNQK844PP4'}))
+	//app.use(express.session({secret: '199G6QNNQK844PP4'}))
 	app.use(express.static(path.join(__dirname, 'public')))
 	hbsPrecompiler.watchDir(
 		__dirname + "/src/templates",
@@ -59,6 +60,8 @@ index = function(req, res){
 app.get('/', index)
 
 app.post('/login', auth.login)
+
+app.get('/games', games.findAll)
 
 app.get('/tourneys', tourneys.findAll)
 app.get('/tourneys/:id', tourneys.find)

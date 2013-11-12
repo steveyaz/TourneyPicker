@@ -4,6 +4,7 @@ require.config({
     underscore: 'lib/underscore-min',
     backbone: 'lib/backbone-min',
     handlebars: 'lib/handlebars',
+    datepicker: 'lib/bootstrap-datepicker',
     templates: 'templates/templates',
     TourneyPickerRouter: 'scripts/TourneyPickerRouter',
     TourneyPickerModel: 'scripts/TourneyPickerModel',
@@ -11,6 +12,8 @@ require.config({
     TourneyPickerPage: 'scripts/TourneyPickerPage',
     AdminModel: 'scripts/AdminModel',
     AdminView: 'scripts/AdminView',
+    OverviewModel: 'scripts/OverviewModel',
+    OverviewView: 'scripts/OverviewView',
     GoogleAuth: 'scripts/GoogleAuth'
   },
   shim: {
@@ -23,6 +26,9 @@ require.config({
   	},
     handlebars: {
       exports: 'Handlebars'
+    },
+    datepicker: {
+      exports: 'datepicker'
     },
     templates: {
       exports: 'Templates',
