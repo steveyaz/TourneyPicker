@@ -71,10 +71,15 @@ define([
 				$('#rounds').append(Handlebars.templates['CreateTournamentRound'](@roundNames[@numRounds]))
 				$('.round-datepicker:last').datepicker()
 				@numRounds++
+				@_refreshPlayerSelector()
 
 		_removeRound: =>
 			if @numRounds > 0
 				$('#rounds').children().children()[@numRounds].remove()
 				@numRounds--
+				@_refreshPlayerSelector()
+
+		_refreshPlayerSelector: =>
+			
 
 )
