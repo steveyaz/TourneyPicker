@@ -12,6 +12,7 @@ define([
 			'click #create-tournament': '_createTournament'
 			'click #add-round': '_addRound'
 			'click #remove-round': '_removeRound'
+			'change .round-format': '_refreshPlayerSelector'
 
 		initialize: ->
 			@roundNames = [
@@ -80,6 +81,10 @@ define([
 				@_refreshPlayerSelector()
 
 		_refreshPlayerSelector: =>
-			
+			firstRoundFormat = $($('#rounds').children().children('.round')[@numRounds - 1]).find('.round-format').val()
+			if firstRoundFormat is 'bracket'
+				console.log 'do bracket'
+			else if firstRoundFormat is 'group4'
+				console.log 'do round4'
 
 )
