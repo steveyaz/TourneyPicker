@@ -27,4 +27,14 @@ define([
 				error: (e) =>
 					console.log e
 
+		getPlayers: =>
+			$.ajax
+				type: 'GET'
+				url: 'http://localhost:3000/players'
+				async: false
+				success: (data) =>
+					@set('players', data)
+				error: (e) =>
+					console.log e
+
 )

@@ -38,6 +38,11 @@ define([
 			for game in games
 				gameNames.push game.name
 			@$el.html Handlebars.templates['CreateTournament'](gameNames)
+			@model.getPlayers()
+			players = @model.get('players')
+			@playerHandles = []
+			for player in players
+				@playerHandles.push player.handle
 			@numRounds = 0
 
 		_createTournament: =>
@@ -72,19 +77,29 @@ define([
 				$('#rounds').append(Handlebars.templates['CreateTournamentRound'](@roundNames[@numRounds]))
 				$('.round-datepicker:last').datepicker()
 				@numRounds++
+				@firstRoundFormat = ''
 				@_refreshPlayerSelector()
 
 		_removeRound: =>
 			if @numRounds > 0
 				$('#rounds').children().children()[@numRounds].remove()
 				@numRounds--
+				@firstRoundFormat = ''
 				@_refreshPlayerSelector()
 
 		_refreshPlayerSelector: =>
 			firstRoundFormat = $($('#rounds').children().children('.round')[@numRounds - 1]).find('.round-format').val()
-			if firstRoundFormat is 'bracket'
-				console.log 'do bracket'
-			else if firstRoundFormat is 'group4'
-				console.log 'do round4'
+			if @firstRoundFormat is firstRoundFormat
+				return
+			@firstRoundFormat = firstRoundFormat
+
+			playersDiv = $('#players')
+			playersDiv.empty()
+			if @firstRoundFormat is 'bracket'
+				for i in [1..Math.pow(2, (@numRounds - 1))]
+					playersDiv.append(Handlebars.templates['Bracket'](@playerHandles))
+			else if @firstRoundFormat is 'group4' and @numRounds > 1
+				for i in [1..Math.pow(2, (@numRounds - 2))]
+					playersDiv.append(Handlebars.templates['Group4'](@playerHandles))
 
 )

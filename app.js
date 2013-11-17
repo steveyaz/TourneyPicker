@@ -7,6 +7,7 @@ var fs = require('fs')
 
 var auth = require('./routes/auth')
 var games = require('./routes/games')
+var players = require('./routes/players')
 var tourneys = require('./routes/tourneys')
 var pools = require('./routes/pools')
 var picks = require('./routes/picks')
@@ -62,6 +63,8 @@ app.get('/', index)
 app.post('/login', auth.login)
 
 app.get('/games', games.findAll)
+
+app.get('/players', players.findAll)
 
 app.get('/tourneys', tourneys.findAll)
 app.get('/tourneys/:id', tourneys.find)

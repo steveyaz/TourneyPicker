@@ -5,3 +5,17 @@ body {
 .g-signin:hover {
 	opacity: 0.5;
 }
+
+div.group4 {
+	border: 2px solid;
+	margin: 2px;
+}
+
+div.bracket {
+	border: 2px solid;
+	margin: 2px;
+}
+
+select.player {
+	display: block;
+}
