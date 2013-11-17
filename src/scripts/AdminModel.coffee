@@ -37,4 +37,17 @@ define([
 				error: (e) =>
 					console.log e
 
+		addTournament: (tournament) =>
+			$.ajax
+				type: 'POST'
+				url: 'http://localhost:3000/tourneys'
+				async: false
+				data: tournament
+				success: (data) =>
+					@set('players', data)
+				error: (e) =>
+					console.log e
+			@getTourneys()
+
+
 )

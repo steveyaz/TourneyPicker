@@ -148,7 +148,7 @@ var populateDB = function() {
 		name: "2014 WCS Korea Season 1",
 		rounds: [
 			{
-				dueDate: "2013-01-31T00:00:00",
+				dueDate: "2013-01-31T00:00:00Z",
 				format: "group4",
 				groups: [
 					{
@@ -162,7 +162,7 @@ var populateDB = function() {
 				]
 			},
 			{
-				dueDate: "2013-02-31T00:00:00",
+				dueDate: "2013-02-31T00:00:00Z",
 				format: "bracket",
 				groups: [
 					{
@@ -176,7 +176,7 @@ var populateDB = function() {
 				]
 			},
 			{
-				dueDate: "2013-03-31T00:00:00",
+				dueDate: "2013-03-31T00:00:00Z",
 				format: "bracket",
 				groups: [
 					{

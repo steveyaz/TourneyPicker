@@ -25,10 +25,10 @@ define([
 			]
 
 			Handlebars.registerPartial("CreateTournamentRound", Handlebars.templates["CreateTournamentRound"])
-			@model.on('change:tourneys', @_updateTourneysList)
 			@model.getTourneys()
+			@_showAdminHome()
 
-		_updateTourneysList: =>
+		_showAdminHome: =>
 			@$el.html Handlebars.templates['Admin'](@model.get('tourneys'))
 
 		_newTournament: =>
@@ -57,20 +57,16 @@ define([
 				dueDate = new Date(dateParts[2], dateParts[0] - 1, dateParts[1]).toJSON()
 				roundFormat = $(round).find('.round-format').val()
 				groups = []
-				# {
-				# 	groups: [
-				# 		{
-				# 			players: [ "Leenock", "MVP", "Nestea", "Fruitdealer" ],
-				# 			winners: [ "Leenock", "Nestea" ]
-				# 		},
-				# 		{
-				# 			players: [ "Jaedong", "MaruPrime", "Rain", "Innovation" ],
-				# 			winners: []
-				# 		}
-				# 	]
-				# }
+				for group in $('#players').children()
+					currentGroup = {}
+					currentGroup.players = []
+					currentGroup.winners = []
+					for player in $(group).children()
+						currentGroup.players.push $(player).val()
+					groups.push currentGroup
 				tournament.rounds.push { dueDate: dueDate, format: roundFormat, groups: groups }
-			console.log tournament
+			@model.addTournament(tournament)
+			@_showAdminHome()
 
 		_addRound: =>
 			if @numRounds < 6
