@@ -18,6 +18,7 @@ define([
 			@pages.overview = new TourneyPickerPage(
 				getUrl: -> ''
 				getTitle: -> 'Tourney Picker'
+				getLabel: -> 'home'
 				createModel: -> @model = new OverviewModel()
 				createView: -> @view = new OverviewView(model: @model)
 				updateView: -> @model.trigger('updateData')
@@ -27,6 +28,7 @@ define([
 			@pages.admin = new TourneyPickerPage(
 				getUrl: -> 'admin'
 				getTitle: -> 'Tourney Picker Admin'
+				getLabel: -> 'admin'
 				createModel: -> @model = new AdminModel()
 				createView: -> @view = new AdminView(model: @model)
 				updateView: -> @model.trigger('updateData')
@@ -40,7 +42,6 @@ define([
 			# Backbone doesn't trigger a change event if the reference hasn't changed
 			if samePage
 				@trigger('change:page')
-
 			
 
 		onLogin: (auth) =>
