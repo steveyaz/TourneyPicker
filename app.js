@@ -64,7 +64,8 @@ app.post('/login', auth.login)
 
 app.get('/games', games.findAll)
 
-app.get('/players', players.findAll)
+app.get('/players/:game', players.findAll)
+app.post('/players', players.add)
 
 app.get('/tourneys', tourneys.findAll)
 app.get('/tourneys/:id', tourneys.find)

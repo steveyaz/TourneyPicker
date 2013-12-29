@@ -47,7 +47,7 @@ define([
 		onLogin: (auth) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://localhost:3000/login'
+				url: 'http://lingbling.net/login'
 				async: false
 				data:
 					accessToken: auth.get('accessToken')
@@ -61,7 +61,7 @@ define([
 		onLogout: (auth) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://localhost:3000/logout'
+				url: 'http://lingbling.net/logout'
 				async: false
 				data:
 					accessToken: auth.get('accessToken')

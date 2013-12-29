@@ -18,10 +18,26 @@ mongoDb.open(function(err, db) {
 });
 
 exports.findAll = function(req, res) {
-	console.log(req.session)
+	console.log(req.session);
+	var game = decodeURIComponent(req.params.game);
 	mongoDb.collection('players', function(err, collection) {
-		collection.find().toArray(function(err, items) {
+		collection.find( { game: game } ).toArray(function(err, items) {
 			res.send(items);
+		});
+	});
+}
+
+exports.add = function(req, res) {
+	var player = req.body;
+	console.log('Adding player: ' + JSON.stringify(player));
+	mongoDb.collection('players', function(err, collection) {
+		collection.insert(player, {safe:true}, function(err, result) {
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} else {
+				console.log('Success: ' + JSON.stringify(result[0]));
+				res.send(result[0]);
+			}
 		});
 	});
 }

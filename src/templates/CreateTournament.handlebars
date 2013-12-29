@@ -4,9 +4,14 @@
 <label>Game</label>
 <select id="game">
 	{{#each this}}
-		<option>{{this}}</option>
+		<option value="{{this}}">{{this}}</option>
 	{{/each}}
 </select>
+<div id="new-player">
+  <label>Create New Player</label>
+  <input id="new-player-handle" class="input-medium" type="text" placeholder="player handle" />
+  <button id="create-new-player" type="button" class="btn">Create Player</button>
+</div>
 <p>Rounds</p>
 <table id="rounds">
 	<tr><th>Round<i id="add-round" class="icon-plus"></i><i id="remove-round" class="icon-minus"></i></th><th>Format</th><th>Due Date</th></tr>

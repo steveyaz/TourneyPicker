@@ -10,7 +10,7 @@ define([
 		getTourneys: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://localhost:3000/tourneys'
+				url: 'http://lingbling.net/tourneys'
 				async: false
 				success: (data) =>
 					@set('tourneys', data)
@@ -20,17 +20,17 @@ define([
 		getGames: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://localhost:3000/games'
+				url: 'http://lingbling.net/games'
 				async: false
 				success: (data) =>
 					@set('games', data)
 				error: (e) =>
 					console.log e
 
-		getPlayers: =>
+		getPlayers: (game) =>
 			$.ajax
 				type: 'GET'
-				url: 'http://localhost:3000/players'
+				url: 'http://lingbling.net/players/' + encodeURIComponent(game)
 				async: false
 				success: (data) =>
 					@set('players', data)
@@ -40,14 +40,25 @@ define([
 		addTournament: (tournament) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://localhost:3000/tourneys'
+				url: 'http://lingbling.net/tourneys'
 				async: false
 				data: tournament
 				success: (data) =>
-					@set('players', data)
+					console.log data
 				error: (e) =>
 					console.log e
 			@getTourneys()
 
+		addPlayer: (player) =>
+			$.ajax
+				type: 'POST'
+				url: 'http://lingbling.net/players'
+				async: false
+				data: player
+				success: (data) =>
+					console.log data
+				error: (e) =>
+					console.log e
+			@getPlayers(player.game)
 
 )

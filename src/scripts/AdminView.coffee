@@ -12,7 +12,9 @@ define([
 			'click #create-tournament': '_createTournament'
 			'click #add-round': '_addRound'
 			'click #remove-round': '_removeRound'
+			'click #create-new-player': '_createNewPlayer'
 			'change .round-format': '_refreshPlayerSelector'
+			'change #game': '_gameSelectionChanged'
 
 		initialize: ->
 			@roundNames = [
@@ -25,6 +27,7 @@ define([
 			]
 
 			Handlebars.registerPartial("CreateTournamentRound", Handlebars.templates["CreateTournamentRound"])
+			@model.on('change:players', @_updatePlayers)
 			@model.getTourneys()
 			@_showAdminHome()
 
@@ -35,19 +38,15 @@ define([
 			@model.getGames()
 			games = @model.get('games')
 			gameNames = []
+			gameNames.push 'select game'
 			for game in games
 				gameNames.push game.name
 			@$el.html Handlebars.templates['CreateTournament'](gameNames)
-			@model.getPlayers()
-			players = @model.get('players')
-			@playerHandles = []
-			for player in players
-				@playerHandles.push player.handle
 			@numRounds = 0
 
 		_createTournament: =>
 			tournament = {
-				game: $('#game').val(),
+				game: @selectedGame,
 				name: $('#name').val(),
 				rounds: [
 				]
@@ -67,6 +66,28 @@ define([
 				tournament.rounds.push { dueDate: dueDate, format: roundFormat, groups: groups }
 			@model.addTournament(tournament)
 			@_showAdminHome()
+
+		_gameSelectionChanged: =>
+			@selectedGame = $('#game').val()
+			$('#game option[value="select game"]').remove()
+			@model.getPlayers(@selectedGame)
+
+		_createNewPlayer: =>
+			if not @selectedGame?
+				return
+			playerHandle = $('#new-player-handle').val()
+			if not not playerHandle and playerHandle not in players
+				player = { handle: playerHandle, game: @selectedGame }
+				@model.addPlayer(player)
+			$('#new-player-handle').val('')
+
+		_updatePlayers: =>
+			players = @model.get('players')
+			@playerHandles = []
+			for player in players
+				@playerHandles.push player.handle
+			@firstRoundFormat = ''
+			@_refreshPlayerSelector()
 
 		_addRound: =>
 			if @numRounds < 6
