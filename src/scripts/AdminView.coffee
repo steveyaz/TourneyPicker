@@ -26,7 +26,6 @@ define([
 				'Round of 64'
 			]
 
-			Handlebars.registerPartial("CreateTournamentRound", Handlebars.templates["CreateTournamentRound"])
 			@model.on('change:players', @_updatePlayers)
 			@model.getTourneys()
 			@_showAdminHome()
@@ -37,11 +36,8 @@ define([
 		_newTournament: =>
 			@model.getGames()
 			games = @model.get('games')
-			gameNames = []
-			gameNames.push 'select game'
-			for game in games
-				gameNames.push game.name
-			@$el.html Handlebars.templates['CreateTournament'](gameNames)
+			games.splice(0, 0, { id: 'default', name: 'select game' })
+			@$el.html Handlebars.templates['CreateTournament'](games)
 			@numRounds = 0
 
 		_createTournament: =>
@@ -69,7 +65,7 @@ define([
 
 		_gameSelectionChanged: =>
 			@selectedGame = $('#game').val()
-			$('#game option[value="select game"]').remove()
+			$('#game option[value="default"]').remove()
 			@model.getPlayers(@selectedGame)
 
 		_createNewPlayer: =>

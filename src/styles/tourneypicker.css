@@ -19,3 +19,19 @@ div.bracket {
 select.player {
 	display: block;
 }
+
+.featured-tournament.starcraft {
+	background: url(../img/starcraft.png) no-repeat center center;
+	height: 200px;
+	width: 420px;
+	border: 2px black solid;
+	margin-bottom: 20px;
+}
+
+.featured-tournament.dota {
+	background: url(../img/dota.png) no-repeat center center;
+	height: 200px;
+	width: 420px;
+	border: 2px black solid;
+	margin-bottom: 20px;
+}

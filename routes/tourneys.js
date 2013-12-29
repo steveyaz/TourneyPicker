@@ -92,45 +92,47 @@ var populateDB = function() {
 
 	var games = [
 	{
+		id: "starcraft",
 		name: "Starcraft II",
 	},
 	{
-		name: "Dota II",
+		id: "dota",
+		name: "DOTA II",
 	}
 	]
 
 	var players = [
 	{
 		handle: "Leenock",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "MVP",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "Nestea",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "Fruitdealer",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "Jaedong",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "MaruPrime",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "Rain",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	{
 		handle: "Innovation",
-		game: "Starcraft II"
+		game: "starcraft"
 	},
 	]
 
