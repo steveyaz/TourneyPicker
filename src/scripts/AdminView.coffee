@@ -27,14 +27,23 @@ define([
 			]
 
 			@model.on('change:players', @_updatePlayers)
+			@model.getGames()
 			@model.getTourneys()
 			@_showAdminHome()
 
 		_showAdminHome: =>
+			tournaments = @model.get('tourneys')
+			games = @model.get('games')
+			# index the games by id in order to join on tournaments
+			gamesObj = {}
+			for game in games
+				gamesObj[game.id] = game
+			# replace the game id with the actual game object
+			for tournament in tournaments
+				tournament.game = gamesObj[tournament.game]
 			@$el.html Handlebars.templates['Admin'](@model.get('tourneys'))
 
 		_newTournament: =>
-			@model.getGames()
 			games = @model.get('games')
 			games.splice(0, 0, { id: 'default', name: 'select game' })
 			@$el.html Handlebars.templates['CreateTournament'](games)

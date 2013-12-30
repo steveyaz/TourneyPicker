@@ -17,7 +17,7 @@ define([
 			# Create the Overview page
 			@pages.overview = new TourneyPickerPage(
 				getUrl: -> ''
-				getTitle: -> 'Tourney Picker'
+				getTitle: -> 'LingBling'
 				getLabel: -> 'home'
 				createModel: -> @model = new OverviewModel()
 				createView: -> @view = new OverviewView(model: @model)
@@ -27,7 +27,7 @@ define([
 			# Create the Admin page
 			@pages.admin = new TourneyPickerPage(
 				getUrl: -> 'admin'
-				getTitle: -> 'Tourney Picker Admin'
+				getTitle: -> 'LingBling Admin'
 				getLabel: -> 'admin'
 				createModel: -> @model = new AdminModel()
 				createView: -> @view = new AdminView(model: @model)
