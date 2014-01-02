@@ -1,6 +1,6 @@
 {
-  "name": "tourney-picker",
-  "description": "Tournament Picker Application",
+  "name": "LingBling",
+  "description": "LingBling Web Application",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

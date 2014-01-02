@@ -6,10 +6,10 @@ require.config({
     handlebars: 'lib/handlebars',
     datepicker: 'lib/bootstrap-datepicker',
     templates: 'templates/templates',
-    TourneyPickerRouter: 'scripts/TourneyPickerRouter',
-    TourneyPickerModel: 'scripts/TourneyPickerModel',
-    TourneyPickerView: 'scripts/TourneyPickerView',
-    TourneyPickerPage: 'scripts/TourneyPickerPage',
+    LingBlingRouter: 'scripts/LingBlingRouter',
+    LingBlingModel: 'scripts/LingBlingModel',
+    LingBlingView: 'scripts/LingBlingView',
+    LingBlingPage: 'scripts/LingBlingPage',
     BrowseTournamentsModel: 'scripts/BrowseTournamentsModel',
     BrowseTournamentsView: 'scripts/BrowseTournamentsView',
     CreateTournamentModel: 'scripts/CreateTournamentModel',
@@ -39,6 +39,6 @@ require.config({
   }
 });
 
-require(['TourneyPickerRouter'], function(TourneyPickerRouter) {
-	new TourneyPickerRouter()
+require(['LingBlingRouter'], function(LingBling) {
+	new LingBling()
 });
