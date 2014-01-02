@@ -17,9 +17,9 @@ mongoDb.open(function(err, db) {
 	}
 });
 
-exports.findAll = function(req, res) {
-	console.log(req.session);
+exports.find = function(req, res) {
 	var game = decodeURIComponent(req.params.game);
+	console.log('Retrieving players for game: ' + game);
 	mongoDb.collection('players', function(err, collection) {
 		collection.find( { game: game } ).toArray(function(err, items) {
 			res.send(items);

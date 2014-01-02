@@ -10,8 +10,10 @@ require.config({
     TourneyPickerModel: 'scripts/TourneyPickerModel',
     TourneyPickerView: 'scripts/TourneyPickerView',
     TourneyPickerPage: 'scripts/TourneyPickerPage',
-    AdminModel: 'scripts/AdminModel',
-    AdminView: 'scripts/AdminView',
+    BrowseTournamentsModel: 'scripts/BrowseTournamentsModel',
+    BrowseTournamentsView: 'scripts/BrowseTournamentsView',
+    CreateTournamentModel: 'scripts/CreateTournamentModel',
+    CreateTournamentView: 'scripts/CreateTournamentView',
     OverviewModel: 'scripts/OverviewModel',
     OverviewView: 'scripts/OverviewView',
     GoogleAuth: 'scripts/GoogleAuth'

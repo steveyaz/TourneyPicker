@@ -18,15 +18,14 @@ define([
 
 		_updatePage: =>
 			page = @model.get('page')
-			@_setActiveLabel(page.getLabel())
-			page.show()
-			page.render()
-
-		_setActiveLabel: (pageLabel) =>
+			
+			# update the header links if necessary
 			$('.nav').children('li').each ->
 				$(@).removeClass('active')
+			if page.getLabel?
+				$('#' + page.getLabel() + '-link').addClass('active')
 
-			$('#' + pageLabel + '-link').addClass('active')
-			console.log 'test: ' + pageLabel
+			page.show()
+			page.render()
 
 )

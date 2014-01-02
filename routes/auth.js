@@ -14,7 +14,6 @@ exports.login = function(req, res) {
 				mongoDb.collection('users', function(err, collection) {
 					console.log('Looking up email: ' + email);
 					collection.findOne({'email': email}, function(err, item) {
-						console.log('test')
 						console.log(err)
 						console.log(item)
 					});

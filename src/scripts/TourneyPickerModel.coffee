@@ -2,11 +2,13 @@ define([
 	'jquery',
 	'backbone',
 	'TourneyPickerPage',
-	'AdminModel',
-	'AdminView',
+	'BrowseTournamentsModel',
+	'BrowseTournamentsView',
+	'CreateTournamentModel',
+	'CreateTournamentView',
 	'OverviewModel',
 	'OverviewView'
-], ($, Backbone, TourneyPickerPage, AdminModel, AdminView, OverviewModel, OverviewView) ->
+], ($, Backbone, TourneyPickerPage, BrowseTournamentsModel, BrowseTournamentsView, CreateTournamentModel, CreateTournamentView, OverviewModel, OverviewView) ->
 
 	class TourneyPickerModel extends Backbone.Model
 
@@ -14,23 +16,31 @@ define([
 			# Create the pages
 			@pages = {}
 
-			# Create the Overview page
+			# Overview page
 			@pages.overview = new TourneyPickerPage(
 				getUrl: -> ''
 				getTitle: -> 'LingBling'
-				getLabel: -> 'home'
 				createModel: -> @model = new OverviewModel()
 				createView: -> @view = new OverviewView(model: @model)
 				updateView: -> @model.trigger('updateData')
 			)
 
-			# Create the Admin page
-			@pages.admin = new TourneyPickerPage(
-				getUrl: -> 'admin'
-				getTitle: -> 'LingBling Admin'
-				getLabel: -> 'admin'
-				createModel: -> @model = new AdminModel()
-				createView: -> @view = new AdminView(model: @model)
+			# Browse Tournaments page
+			@pages.tournaments = new TourneyPickerPage(
+				getUrl: -> 'tournaments'
+				getTitle: -> 'LingBling Tournaments'
+				getLabel: -> 'tournaments'
+				createModel: -> @model = new BrowseTournamentsModel()
+				createView: -> @view = new BrowseTournamentsView(model: @model)
+				updateView: -> @model.trigger('updateData')
+			)
+
+			# Create Tournament page
+			@pages.createTournament = new TourneyPickerPage(
+				getUrl: -> 'createTournament'
+				getTitle: -> 'LingBling Create Tournament'
+				createModel: -> @model = new CreateTournamentModel()
+				createView: -> @view = new CreateTournamentView(model: @model)
 				updateView: -> @model.trigger('updateData')
 			)
 

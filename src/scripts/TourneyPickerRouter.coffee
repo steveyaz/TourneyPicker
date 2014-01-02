@@ -8,7 +8,8 @@ define([
 
 		routes:
 			'': '_overviewPage'
-			'admin': '_adminPage'
+			'tournaments': '_tournamentsPage'
+			'createTournament': '_createTournamentPage'
 
 		initialize: ->
 			@model = new TourneyPickerModel()
@@ -18,15 +19,18 @@ define([
 			@model.on('change:page', @_setPage)
 			Backbone.history.start()
 
-		_overviewPage: =>
-			@model.setPage(@model.pages.overview)
-
-		_adminPage: =>
-			@model.setPage(@model.pages.admin)
-
 		_setPage: =>
 			page = @model.get('page')
 			window.document.title = page.getTitle()
 			@navigate(page.getUrl())
+
+		_overviewPage: =>
+			@model.setPage(@model.pages.overview)
+
+		_tournamentsPage: =>
+			@model.setPage(@model.pages.tournaments)
+
+		_createTournamentPage: =>
+			@model.setPage(@model.pages.createTournament)
 
 )

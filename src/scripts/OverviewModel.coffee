@@ -7,13 +7,12 @@ define([
 
 		initialize: ->
 
-		getTourneys: =>
+		getTournaments: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/tourneys'
-				async: false
+				url: 'http://lingbling.net/tournaments'
 				success: (data) =>
-					@set('tourneys', data)
+					@set('tournaments', data)
 				error: (e) =>
 					console.log e
 

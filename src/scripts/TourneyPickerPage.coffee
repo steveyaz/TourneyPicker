@@ -1,8 +1,10 @@
 define([
 	'jquery',
 	'backbone',
-	'AdminModel',
-	'AdminView'
+	'BrowseTournamentsModel',
+	'BrowseTournamentsView',
+	'CreateTournamentModel',
+	'CreateTournamentView'
 ], ($, Backbone) ->
 
 	class TourneyPickerPage

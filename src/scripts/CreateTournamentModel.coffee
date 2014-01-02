@@ -3,17 +3,17 @@ define([
 	'backbone'
 ], ($, Backbone) ->
 
-	class AdminModel extends Backbone.Model
+	class CreateTournamentModel extends Backbone.Model
 
 		initialize: ->
 			
-		getTourneys: =>
+		getTournaments: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/tourneys'
+				url: 'http://lingbling.net/tournaments'
 				async: false
 				success: (data) =>
-					@set('tourneys', data)
+					@set('tournaments', data)
 				error: (e) =>
 					console.log e
 
@@ -40,14 +40,14 @@ define([
 		addTournament: (tournament) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/tourneys'
+				url: 'http://lingbling.net/tournaments'
 				async: false
 				data: tournament
 				success: (data) =>
 					console.log data
 				error: (e) =>
 					console.log e
-			@getTourneys()
+			@getTournaments()
 
 		addPlayer: (player) =>
 			$.ajax
