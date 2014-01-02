@@ -44,7 +44,6 @@ define([
 				async: false
 				data: tournament
 				success: (data) =>
-					console.log data
 				error: (e) =>
 					console.log e
 			@getTournaments()
@@ -56,7 +55,6 @@ define([
 				async: false
 				data: player
 				success: (data) =>
-					console.log data
 				error: (e) =>
 					console.log e
 			@getPlayers(player.game)
