@@ -46,9 +46,7 @@ var populateDB = function() {
 		collection.insert(games, {safe:true}, function(err, result) {});
 	});
 
- }
-
-};
+}
 
  //    var game =
  //    {
