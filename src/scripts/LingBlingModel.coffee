@@ -7,8 +7,9 @@ define([
 	'CreateTournamentModel',
 	'CreateTournamentView',
 	'OverviewModel',
-	'OverviewView'
-], ($, Backbone, LingBlingPage, BrowseTournamentsModel, BrowseTournamentsView, CreateTournamentModel, CreateTournamentView, OverviewModel, OverviewView) ->
+	'OverviewView',
+	'GoogleAuth'
+], ($, Backbone, LingBlingPage, BrowseTournamentsModel, BrowseTournamentsView, CreateTournamentModel, CreateTournamentView, OverviewModel, OverviewView, GoogleAuth) ->
 
 	class LingBlingModel extends Backbone.Model
 
@@ -44,6 +45,10 @@ define([
 				updateView: -> @model.trigger('updateData')
 			)
 
+			# Google auth
+			@googleAuth = new GoogleAuth()
+			@googleAuth.onSignIn = @onSignIn
+
 		setPage: (page) =>
 			currentPage = @get('page')
 			samePage = currentPage is page
@@ -52,34 +57,32 @@ define([
 			# Backbone doesn't trigger a change event if the reference hasn't changed
 			if samePage
 				@trigger('change:page')
-			
 
-		onLogin: (auth) =>
+		signIn: =>
+			@googleAuth.checkAuth(false)
+
+		onSignIn: (auth) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/login'
+				url: 'http://lingbling.net/signin'
 				async: false
 				data:
-					accessToken: auth.get('accessToken')
-				success: (data) ->
-					console.log data
+					accessToken: auth['access_token']
+				success: (data) =>
+					console.log 'Signed in successfully'
+					@set('user', data)
 				error: (e) ->
 					console.log e
-					# You could point users to manually disconnect if unsuccessful
-					# https://plus.google.com/apps
 
-		onLogout: (auth) =>
+		signOut: =>
+			@set('user', null)
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/logout'
+				url: 'http://lingbling.net/signout'
 				async: false
-				data:
-					accessToken: auth.get('accessToken')
 				success: (data) ->
-					console.log data
+					console.log 'Signed out successfully'
 				error: (e) ->
 					console.log e
-					# You could point users to manually disconnect if unsuccessful
-					# https://plus.google.com/apps
 
 )

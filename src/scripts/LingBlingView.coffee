@@ -7,14 +7,21 @@ define([
 
 		initialize: ->
 			@model.on('change:page', @_updatePage)
-			$('body').html Handlebars.templates['MainView']()
-			# $('body').html Handlebars.templates['GoogleSignin']({
-			# 	signinCallback: 'googleSigninCallback',
-			# 	appId: '722928241069'
-			# })
-			# googleAuth = new GoogleAuth()
-			# googleAuth.on('change:accessToken', @model.onLogin)
-			# window.googleSigninCallback = googleAuth.signinCallback
+			@model.on('change:user', @_updateUser)
+
+			$('body').html Handlebars.templates['MainView'](@model.googleAuth)
+
+			@signInButton = $('#sign-in-button')
+			@signOutButton = $('#sign-out-button')
+
+			@signInButton.click(@_signIn)
+			@signOutButton.click(@_signOut)
+
+		_signIn: =>
+			@model.signIn()
+
+		_signOut: =>
+			@model.signOut()
 
 		_updatePage: =>
 			page = @model.get('page')
@@ -27,5 +34,16 @@ define([
 
 			page.show()
 			page.render()
+
+		_updateUser: =>
+			user = @model.get('user')
+
+			if user?
+				@signInButton.hide()
+				@signOutButton.show()
+				console.log user
+			else
+				@signOutButton.hide()
+				@signInButton.show()
 
 )

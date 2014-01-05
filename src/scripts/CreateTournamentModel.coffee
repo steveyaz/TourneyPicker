@@ -6,22 +6,11 @@ define([
 	class CreateTournamentModel extends Backbone.Model
 
 		initialize: ->
-			
-		getTournaments: =>
-			$.ajax
-				type: 'GET'
-				url: 'http://lingbling.net/tournaments'
-				async: false
-				success: (data) =>
-					@set('tournaments', data)
-				error: (e) =>
-					console.log e
 
 		getGames: =>
 			$.ajax
 				type: 'GET'
 				url: 'http://lingbling.net/games'
-				async: false
 				success: (data) =>
 					@set('games', data)
 				error: (e) =>
@@ -31,24 +20,29 @@ define([
 			$.ajax
 				type: 'GET'
 				url: 'http://lingbling.net/players/' + encodeURIComponent(game)
-				async: false
 				success: (data) =>
 					@set('players', data)
 				error: (e) =>
 					console.log e
 
-		addTournament: (tournament) =>
+		createTournament: (name, game, rounds) =>
+			tournament = {
+				name: name,
+				game: game,
+				rounds: rounds
+			}
+
 			$.ajax
 				type: 'POST'
 				url: 'http://lingbling.net/tournaments'
-				async: false
 				data: tournament
 				success: (data) =>
 				error: (e) =>
 					console.log e
-			@getTournaments()
 
-		addPlayer: (player) =>
+		createPlayer: (handle, game) =>
+			player = { handle: handle, game: game }
+
 			$.ajax
 				type: 'POST'
 				url: 'http://lingbling.net/players'

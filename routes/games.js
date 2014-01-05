@@ -136,24 +136,24 @@ var populateDB = function() {
  //    }
  //
  //    var pick =
- //            {
- //                    winners: {
- //                            1: [
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 4 },
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 1 },
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2 },
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 3 },
- //                            ],
- //                            2: [
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2},
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2},
- //                            ],
- //                            3: [
- //                                    { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 4},
- //                            ]
- //                    },
- //                    points: 13,
- //            }
+ //    {
+ //            winners: {
+ //                    1: [
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 4 },
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 1 },
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2 },
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 3 },
+ //                    ],
+ //                    2: [
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2},
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 2},
+ //                    ],
+ //                    3: [
+ //                            { player: ObjectId("51a7dc7b2cacf40b79990be6"), weight: 4},
+ //                    ]
+ //            },
+ //            points: 13,
+ //    }
  //
  //    var user =
  //    {
