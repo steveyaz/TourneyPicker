@@ -17,6 +17,8 @@ define([
 			@signInButton.click(@_signIn)
 			@signOutButton.click(@_signOut)
 
+			@_updateUser()
+
 		_signIn: =>
 			@model.signIn()
 

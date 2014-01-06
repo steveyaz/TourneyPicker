@@ -22,7 +22,7 @@ define([
 
 		_onClientLoad: =>
 			gapi.client.setApiKey(@apiKey)
-			window.setTimeout(@checkAuth(true), 1)
+			# window.setTimeout(@checkAuth(true), 1)
 
 		_onAuthResultReturned: (authResult) =>
 			if authResult['access_token']?

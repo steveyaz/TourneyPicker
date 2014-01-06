@@ -47,7 +47,10 @@ define([
 
 			# Google auth
 			@googleAuth = new GoogleAuth()
-			@googleAuth.onSignIn = @onSignIn
+			@googleAuth.onSignIn = @onGoogleSignIn
+
+			# Check the session to see if already signed in
+			@checkSession()
 
 		setPage: (page) =>
 			currentPage = @get('page')
@@ -61,7 +64,21 @@ define([
 		signIn: =>
 			@googleAuth.checkAuth(false)
 
-		onSignIn: (auth) =>
+		checkSession: =>
+			$.ajax
+				type: 'POST'
+				url: 'http://lingbling.net/checksession'
+				async: false
+				success: (data) =>
+					if data.status is 'signedin'
+						console.log 'Signed in successfully'
+						@set('user', data.user)
+					else if data.status is not 'signedout'
+						@googleAuth.checkAuth(true)
+				error: (e) ->
+					console.log e
+
+		onGoogleSignIn: (auth) =>
 			$.ajax
 				type: 'POST'
 				url: 'http://lingbling.net/signin'
