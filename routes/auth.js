@@ -72,6 +72,8 @@ exports.checkSession = function(req, res) {
 	var sid = req.cookies['connect.sid'];
 	var data = {};
 	console.log('checkSession: ' + sid);
+	req.session.cookie.expires = true;
+	req.session.cookie.maxAge = 3600000;
 	mongoDb.collection('sessions', function(err, collection) {
 		collection.findOne({sid: sid}, function(err, session) {
 			if (session != null) {
