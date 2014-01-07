@@ -10,7 +10,7 @@ define([
 		getGames: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/games'
+				url: 'https://lingbling.net/games'
 				success: (data) =>
 					@set('games', data)
 				error: (e) =>
@@ -19,7 +19,7 @@ define([
 		getPlayers: (game) =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/players/' + encodeURIComponent(game)
+				url: 'https://lingbling.net/players/' + encodeURIComponent(game)
 				success: (data) =>
 					@set('players', data)
 				error: (e) =>
@@ -34,7 +34,7 @@ define([
 
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/tournaments'
+				url: 'https://lingbling.net/tournaments'
 				data: tournament
 				success: (data) =>
 				error: (e) =>
@@ -45,7 +45,7 @@ define([
 
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/players'
+				url: 'https://lingbling.net/players'
 				async: false
 				data: player
 				success: (data) =>

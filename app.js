@@ -1,6 +1,7 @@
 var express = require('express')
 var path = require('path')
 var http = require('http')
+var https = require('https')
 var hbsPrecompiler = require('handlebars-precompiler')
 var watch = require('watch')
 var fs = require('fs')
@@ -15,7 +16,7 @@ var picks = require('./routes/picks')
 var app = express()
 
 app.configure(function () {
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', process.env.PORT || 3001);
 	app.use(express.logger('dev'))     /* 'default', 'short', 'tiny', 'dev' */
 	app.use(express.bodyParser())
 	app.use(express.cookieParser())
@@ -85,6 +86,18 @@ app.post('/picks', picks.add)
 app.delete('/picks/:id', picks.delete)
 app.put('/picks/:id', picks.update)
 
-http.createServer(app).listen(app.get('port'), function () {
+var options = {
+	key: fs.readFileSync('security/key.pem'),
+	cert: fs.readFileSync('security/cert.pem')
+};
+
+// http server to redirect to https
+var http = express.createServer();
+http.get('*', function(req,res){  
+    res.redirect('https://lingbling.net' + req.url);
+})
+http.listen(3000);
+
+https.createServer(options, app).listen(app.get('port'), function () {
     console.log("Listening on port " + app.get('port'));
 });

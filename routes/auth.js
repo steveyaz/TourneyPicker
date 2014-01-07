@@ -35,7 +35,7 @@ exports.signIn = function(req, res) {
 					collection.findOne({email: email}, function(err, user) {
 						if (err) {
 							console.log(err);
-							res.send({});
+							res.send();
 						}
 						if (user == null) {
 							user = createUser(email);
@@ -71,7 +71,7 @@ exports.signOut = function(req, res) {
 exports.checkSession = function(req, res) {
 	var sid = req.cookies['connect.sid'];
 	var data = {};
-	console.log('checkSession: ' + sid);
+	console.log('Check session: ' + sid);
 	req.session.cookie.expires = true;
 	req.session.cookie.maxAge = 3600000;
 	mongoDb.collection('sessions', function(err, collection) {
@@ -87,7 +87,6 @@ exports.checkSession = function(req, res) {
 							if (user != null) {
 								data.user = user;
 							}
-							console.log(data);
 							res.send(data);
 						});
 					});
@@ -103,7 +102,6 @@ exports.checkSession = function(req, res) {
 
 function initiateSession(email, sid) {
 	console.log('Signing in: ' + email);
-	console.log(sid);
 	var session = {email: email, sid: sid, status: 'signedin', start: new Date().toISOString()};
 
 	mongoDb.collection('sessions', function(err, collection) {
@@ -127,7 +125,7 @@ function createUser(email) {
 	};
 
 	mongoDb.collection('users', function(err, collection) {
-		collection.update({email: email}, user, {safe:true}, function(err, result) {
+		collection.insert(user, {safe:true}, function(err, result) {
 			if (err) {
 				console.log(err);
 			}
@@ -141,6 +139,7 @@ function createLogInResponse(user) {
 	return {
 		email: user.email,
 		handle: user.handle,
-		bling: user.bling
+		bling: user.bling,
+		access: user.access
 	};
 }

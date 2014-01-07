@@ -14,7 +14,7 @@ define([
 		_getTournaments: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/tournaments'
+				url: 'https://lingbling.net/tournaments'
 				success: (data) =>
 					@tournaments = data
 					if @tournaments? and @games
@@ -25,7 +25,7 @@ define([
 		_getGames: =>
 			$.ajax
 				type: 'GET'
-				url: 'http://lingbling.net/games'
+				url: 'https://lingbling.net/games'
 				success: (data) =>
 					@games = data
 					if @tournaments? and @games

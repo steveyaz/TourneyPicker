@@ -67,7 +67,7 @@ define([
 		checkSession: =>
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/checksession'
+				url: 'https://lingbling.net/checksession'
 				async: false
 				success: (data) =>
 					if data.status is 'signedin'
@@ -81,7 +81,7 @@ define([
 		onGoogleSignIn: (auth) =>
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/signin'
+				url: 'https://lingbling.net/signin'
 				async: false
 				data:
 					accessToken: auth['access_token']
@@ -95,7 +95,7 @@ define([
 			@set('user', null)
 			$.ajax
 				type: 'POST'
-				url: 'http://lingbling.net/signout'
+				url: 'https://lingbling.net/signout'
 				async: false
 				success: (data) ->
 					console.log 'Signed out successfully'
