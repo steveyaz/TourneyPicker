@@ -18,31 +18,28 @@ define([
 			@pages = {}
 
 			# Overview page
-			@pages.overview = new LingBlingPage(
+			@pages.overview = new LingBlingPage(@,
 				getUrl: -> ''
 				getTitle: -> 'LingBling'
 				createModel: -> @model = new OverviewModel()
 				createView: -> @view = new OverviewView(model: @model)
-				updateView: -> @model.trigger('updateData')
 			)
 
 			# Browse Tournaments page
-			@pages.tournaments = new LingBlingPage(
+			@pages.tournaments = new LingBlingPage(@,
 				getUrl: -> 'tournaments'
 				getTitle: -> 'LingBling Tournaments'
 				getLabel: -> 'tournaments'
 				createModel: -> @model = new BrowseTournamentsModel()
 				createView: -> @view = new BrowseTournamentsView(model: @model)
-				updateView: -> @model.trigger('updateData')
 			)
 
 			# Create Tournament page
-			@pages.createTournament = new LingBlingPage(
+			@pages.createTournament = new LingBlingPage(@,
 				getUrl: -> 'createTournament'
 				getTitle: -> 'LingBling Create Tournament'
 				createModel: -> @model = new CreateTournamentModel()
 				createView: -> @view = new CreateTournamentView(model: @model)
-				updateView: -> @model.trigger('updateData')
 			)
 
 			# Google auth

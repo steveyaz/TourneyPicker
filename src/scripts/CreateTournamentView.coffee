@@ -28,10 +28,15 @@ define([
 
 			@model.on('change:players', @_updatePlayers)
 			@model.on('change:games', @_render)
+			@model.on('change:user', @_render)
 			@numRounds = 0
 			@model.getGames()
 
 		_render: =>
+			@$el.html null
+			if not @model.get('user')? or @model.get('user').access < 2
+			 	return
+
 			# first selection option should be 'select game'
 			games = @model.get('games')
 			games.splice(0, 0, { id: 'default', name: 'select game' })

@@ -53,4 +53,7 @@ define([
 					console.log e
 			@getPlayers(player.game)
 
+		updateUser: (lingblingmodel) =>
+			@set('user', lingblingmodel.get('user'))
+
 )

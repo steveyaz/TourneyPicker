@@ -9,22 +9,23 @@ define([
 
 	class LingBlingPage
 		
-		constructor: (stuff) ->
+		constructor: (lingblingmodel, stuff) ->
+			@lingblingmodel = lingblingmodel
 			_.extend(@, stuff)
 
 		show: =>
 			if not @model?
 				@createModel()
+				@lingblingmodel.on('change:user', @model.updateUser)
+				@model.updateUser(@lingblingmodel)
 			if not @view?
 				@createView()
 				$('#content').append @view?.$el
-
-		render: =>
-			@updateView()
 
 		destroy: =>
 			@view?.remove()
 			@view?.off()
 			@view = null
 			@model = null
+
 )

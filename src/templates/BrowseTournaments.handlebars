@@ -1,8 +1,10 @@
 <h2>Browse Tournaments</h2>
+{{#if this.canCreateTournament}}
 <button id="new-tournament" class="btn" type="button">New Tournament</button>
+{{/if}}
 <table>
 	<tr><th>Game</th><th>Name</th></tr>
-	{{#each this}}
+	{{#each this.tournaments}}
 		<tr><td>{{game.name}}</td><td>{{name}}</td></tr>
 	{{/each}}
 </table>

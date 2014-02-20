@@ -10,6 +10,9 @@ define([
 		getTournaments: =>
 			@_getTournaments()
 			@_getGames()
+
+		updateUser: (lingblingmodel) =>
+			@set('user', lingblingmodel.get('user'))
 			
 		_getTournaments: =>
 			$.ajax

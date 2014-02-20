@@ -16,4 +16,7 @@ define([
 				error: (e) =>
 					console.log e
 
+		updateUser: (user) =>
+			@set('user', user)
+
 )

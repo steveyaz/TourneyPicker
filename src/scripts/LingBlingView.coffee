@@ -35,7 +35,6 @@ define([
 				$('#' + page.getLabel() + '-link').addClass('active')
 
 			page.show()
-			page.render()
 
 		_updateUser: =>
 			user = @model.get('user')
@@ -43,7 +42,6 @@ define([
 			if user?
 				@signInButton.hide()
 				@signOutButton.show()
-				console.log user
 			else
 				@signOutButton.hide()
 				@signInButton.show()
