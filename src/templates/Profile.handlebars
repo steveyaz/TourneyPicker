@@ -1,0 +1,22 @@
+<div id="profile">
+	<div>
+		<h2 id="handle" class="inline">{{handle}}</h2>
+		{{#if editable}}
+		<input type="text" id="editable-handle" class="inline" value="{{handle}}" />
+		<a class="pointer inline" id="save-handle">save</a>
+		<a class="pointer inline" id="edit-handle">edit</a>
+		{{/if}}
+	</div>
+	<div>
+		<div class="bling inline" />
+		<h3 class="inline">{{bling}}</h3>
+	</div>
+	{{#if editable}}
+	<div>
+		<h3>Tournament Administration</h3>
+		{{#each tournaments}}
+			<p>{{name}}</p>
+		{{/each}}
+	</div>
+	{{/if}}
+</div>

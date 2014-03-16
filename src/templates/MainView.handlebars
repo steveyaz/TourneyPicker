@@ -9,11 +9,17 @@
       <a class="brand" href="#">LingBling</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li id="tournaments-link"><a href="#tournaments">Tournaments</a></li>
-          <li><button type="button" id="sign-in-button" class="btn">sign in</button></li>
-          <li><button type="button" id="sign-out-button" class="btn" style="display:none">sign out</button></li>
+          <li><a href="#tournaments">tournaments</a></li>
+          <li><a id="sign-in-button" class="pointer">sign in</a></li>
+          <li class="dropdown" id="profile-dropdown-container">
+            <a id="profile-dropdown" class="dropdown-toggle pointer" data-toggle="dropdown"></a>
+            <ul class="dropdown-menu">
+              <li><a id="profile-link">profile</a></li>
+              <li><a class="pointer" id="sign-out-button">sign out</a></li>
+            </ul>
+          </div></li>
         </ul>
-      </div><!--/.nav-collapse -->
+      </div>
     </div>
   </div>
 </div>

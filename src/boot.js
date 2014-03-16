@@ -5,6 +5,7 @@ require.config({
     backbone: 'lib/backbone-min',
     handlebars: 'lib/handlebars',
     datepicker: 'lib/bootstrap-datepicker',
+    bootstrap: 'lib/bootstrap.min',
     templates: 'templates/templates',
     LingBlingRouter: 'scripts/LingBlingRouter',
     LingBlingModel: 'scripts/LingBlingModel',
@@ -16,6 +17,10 @@ require.config({
     CreateTournamentView: 'scripts/CreateTournamentView',
     OverviewModel: 'scripts/OverviewModel',
     OverviewView: 'scripts/OverviewView',
+    ProfileModel: 'scripts/ProfileModel',
+    ProfileView: 'scripts/ProfileView',
+    TournamentModel: 'scripts/TournamentModel',
+    TournamentView: 'scripts/TournamentView',
     GoogleAuth: 'scripts/GoogleAuth'
   },
   shim: {
@@ -33,8 +38,8 @@ require.config({
       exports: 'datepicker'
     },
     templates: {
-      exports: 'Templates',
-      deps: ['handlebars']
+      deps: ['handlebars'],
+      exports: 'Templates'
     }
   }
 });

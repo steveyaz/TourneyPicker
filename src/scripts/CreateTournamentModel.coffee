@@ -32,11 +32,15 @@ define([
 				rounds: rounds
 			}
 
+			email = @get('user').email
+
 			$.ajax
 				type: 'POST'
 				url: 'https://lingbling.net/tournaments'
-				data: tournament
+				data: {'tournament': tournament, 'email': email}
+				async: false
 				success: (data) =>
+					@newTournamentId = data
 				error: (e) =>
 					console.log e
 

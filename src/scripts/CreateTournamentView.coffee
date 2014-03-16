@@ -116,9 +116,12 @@ define([
 				rounds[roundNumber] = { startDate: startDate, format: roundFormat, groups: groups }
 				roundNumber++
 			@model.createTournament($('#name').val(), @selectedGame, rounds)
-			@_navigateToBrowseTournaments()
+			@_navigateToNewTournament(@model.newTournamentId)
 
 		_navigateToBrowseTournaments: =>
 			window.document.location.href = '#tournaments'
+
+		_navigateToNewTournament: (id) =>
+			window.document.location.href = '#tournament/' + id
 
 )

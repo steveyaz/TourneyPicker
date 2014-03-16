@@ -10,6 +10,8 @@ define([
 			'': '_overviewPage'
 			'tournaments': '_tournamentsPage'
 			'createTournament': '_createTournamentPage'
+			'profile/:id': '_profilePage'
+			'tournament/:id': '_tournamentPage'
 
 		initialize: ->
 			@model = new LingBlingModel()
@@ -22,7 +24,6 @@ define([
 		_setPage: =>
 			page = @model.get('page')
 			window.document.title = page.getTitle()
-			@navigate(page.getUrl())
 
 		_overviewPage: =>
 			@model.setPage(@model.pages.overview)
@@ -32,5 +33,13 @@ define([
 
 		_createTournamentPage: =>
 			@model.setPage(@model.pages.createTournament)
+
+		_profilePage: (id) =>
+			@model.setPage(@model.pages.profile)
+			@model.pages.profile.setId(id)
+
+		_tournamentPage: (id) =>
+			@model.setPage(@model.pages.tournament)
+			@model.pages.tournament.setId(id)
 
 )

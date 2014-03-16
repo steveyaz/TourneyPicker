@@ -1,7 +1,8 @@
 define([
   'backbone',
-  'templates'
-], (Backbone, Templates) ->
+  'templates',
+  'bootstrap'
+], (Backbone, Templates, bootstrap) ->
 
 	class LingBlingView extends Backbone.View
 
@@ -9,10 +10,13 @@ define([
 			@model.on('change:page', @_updatePage)
 			@model.on('change:user', @_updateUser)
 
-			$('body').html Handlebars.templates['MainView'](@model.googleAuth)
+			$('body').html Handlebars.templates['MainView']()
 
 			@signInButton = $('#sign-in-button')
 			@signOutButton = $('#sign-out-button')
+			@profileDropdownContainer = $('#profile-dropdown-container')
+			@profileDropdown = $('#profile-dropdown')
+			@profileLink = $('#profile-link')
 
 			@signInButton.click(@_signIn)
 			@signOutButton.click(@_signOut)
@@ -41,9 +45,11 @@ define([
 
 			if user?
 				@signInButton.hide()
-				@signOutButton.show()
+				@profileDropdown.text(user.handle)
+				@profileLink.attr('href', '#profile/' + user.id)
+				@profileDropdownContainer.show()
 			else
-				@signOutButton.hide()
+				@profileDropdownContainer.hide()
 				@signInButton.show()
 
 )

@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var auth = require('./auth')
 
 var mongoServer = new mongo.Server('localhost', 27017, {auto_reconnect: true});
 var mongoDb = new mongo.Db('pickerdb', mongoServer);
@@ -20,8 +21,17 @@ mongoDb.open(function(err, db) {
 exports.findAll = function(req, res) {
 	console.log('Retrieving all tournaments');
 	mongoDb.collection('tournaments', function(err, collection) {
-		collection.find().toArray(function(err, items) {
-			res.send(items);
+		collection.find().toArray(function(err, tournaments) {
+			var data = [];
+			for (var i = 0; i < tournaments.length; i++)
+			{ 
+				var tournament = {};
+				tournament.name = tournaments[i].name
+				tournament.game = tournaments[i].game
+				tournament.id = tournaments[i]._id
+				data.push(tournament);
+			}
+			res.send(data);
 		});
 	});
 }
@@ -30,24 +40,42 @@ exports.find = function(req, res) {
 	var id = req.params.id;
 	console.log('Retrieving tournament: ' + id);
 	mongoDb.collection('tournaments', function(err, collection) {
-		collection.findOne({'_id': new mongo.BSONPure.ObjectID(id)}, function(err, item) {
-			res.send(item);
+		collection.findOne({'_id': new mongo.BSONPure.ObjectID(id)}, function(err, tournament) {
+			if (!err && tournament) {
+				var data = {};
+				data.name = tournament.name
+				data.game = tournament.game
+				res.send(data);
+			} else {
+				res.send();
+			}
 		});
 	});
 }
 
 exports.add = function(req, res) {
-	var tournament = req.body;
+	var tournament = req.body.tournament;
 	console.log('Adding tournament: ' + JSON.stringify(tournament));
-	mongoDb.collection('tournaments', function(err, collection) {
-		collection.insert(tournament, {safe:true}, function(err, result) {
-			if (err) {
-				res.send({'error':'An error has occurred'});
+	auth.getUser(req, function(user) {
+		if (user == null) {
+			res.status(402)
+		} else {
+			if (user.access > 1) {
+				mongoDb.collection('tournaments', function(err, collection) {
+					tournament.administrator = user._id
+					collection.insert(tournament, {safe:true}, function(err, result) {
+						if (err) {
+							res.status(401);
+						} else {
+							console.log('Success: ' + JSON.stringify(result[0]));
+							res.send(result[0]._id);
+						}
+					});
+				});
 			} else {
-				console.log('Success: ' + JSON.stringify(result[0]));
-				res.send(result[0]);
+				res.status(403).send('User does not have required access level.')
 			}
-		});
+		}
 	});
 }
 

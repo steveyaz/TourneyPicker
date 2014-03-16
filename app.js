@@ -65,6 +65,9 @@ app.post('/signin', auth.signIn)
 app.post('/signout', auth.signOut)
 app.post('/checksession', auth.checkSession)
 
+app.get('/profile/:id', auth.getProfile)
+app.put('/profile/:handle', auth.updateHandle)
+
 app.get('/games', games.findAll)
 
 app.get('/players/:game', players.find)

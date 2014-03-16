@@ -8,8 +8,12 @@ define([
 	'CreateTournamentView',
 	'OverviewModel',
 	'OverviewView',
+	'ProfileModel',
+	'ProfileView',
+	'TournamentModel',
+	'TournamentView',
 	'GoogleAuth'
-], ($, Backbone, LingBlingPage, BrowseTournamentsModel, BrowseTournamentsView, CreateTournamentModel, CreateTournamentView, OverviewModel, OverviewView, GoogleAuth) ->
+], ($, Backbone, LingBlingPage, BrowseTournamentsModel, BrowseTournamentsView, CreateTournamentModel, CreateTournamentView, OverviewModel, OverviewView, ProfileModel, ProfileView, TournamentModel, TournamentView, GoogleAuth) ->
 
 	class LingBlingModel extends Backbone.Model
 
@@ -40,6 +44,24 @@ define([
 				getTitle: -> 'LingBling Create Tournament'
 				createModel: -> @model = new CreateTournamentModel()
 				createView: -> @view = new CreateTournamentView(model: @model)
+			)
+
+			# View Tournament page
+			@pages.tournament = new LingBlingPage(@,
+				getUrl: -> 'tournament'
+				getTitle: -> 'Tournament'
+				setId: (id) -> @model.setId(id)
+				createModel: -> @model = new TournamentModel()
+				createView: -> @view = new TournamentView(model: @model)
+			)
+
+			# View Profile page
+			@pages.profile = new LingBlingPage(@,
+				getUrl: -> 'profile'
+				getTitle: -> 'User Profile'
+				setId: (id) -> @model.setId(id)
+				createModel: -> @model = new ProfileModel()
+				createView: -> @view = new ProfileView(model: @model)
 			)
 
 			# Google auth
