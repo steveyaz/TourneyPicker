@@ -107,14 +107,28 @@ define([
 				startDate = new Date(dateParts[2], dateParts[0] - 1, dateParts[1]).toJSON()
 				roundFormat = $(round).find('.round-format').val()
 				groups = []
-				for group in $('#players').children()
+				numPlayers = Math.pow(2, roundNumber)
+				playersPerGroup = if roundFormat == 'bracket' then  2 else 4
+				numGroups = numPlayers / playersPerGroup
+				for i in [1..numGroups]
 					currentGroup = {}
+					currentGroup.played = false
 					currentGroup.players = []
-					for player in $(group).children()
-						currentGroup.players.push $(player).val()
+					for j in [1..playersPerGroup]
+						currentGroup.players.push {name: null, winner: null}
 					groups.push currentGroup
 				rounds[roundNumber] = { startDate: startDate, format: roundFormat, groups: groups }
 				roundNumber++
+
+			rounds[roundNumber - 1].groups = []
+			for group in $('#players').children()
+				currentGroup = {}
+				currentGroup.played = false
+				currentGroup.players = []
+				for player in $(group).children()
+					currentGroup.players.push {name: $(player).val(), winner: null}
+				rounds[roundNumber - 1].groups.push currentGroup
+
 			@model.createTournament($('#name').val(), @selectedGame, rounds)
 			@_navigateToNewTournament(@model.newTournamentId)
 
