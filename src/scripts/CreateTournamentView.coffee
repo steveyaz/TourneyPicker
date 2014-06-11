@@ -61,10 +61,7 @@ define([
 			$('#new-player-handle').val('')
 
 		_updatePlayers: =>
-			players = @model.get('players')
-			@playerHandles = []
-			for player in players
-				@playerHandles.push player.handle
+			@players = @model.get('players')
 			@firstRoundFormat = ''
 			@_layoutFirstRound()
 
@@ -79,10 +76,10 @@ define([
 			playersDiv.empty()
 			if @firstRoundFormat is 'bracket'
 				for i in [1..Math.pow(2, (@numRounds - 1))]
-					playersDiv.append(Handlebars.templates['Bracket'](@playerHandles))
+					playersDiv.append(Handlebars.templates['Bracket'](@players))
 			else if @firstRoundFormat is 'group4' and @numRounds > 1
 				for i in [1..Math.pow(2, (@numRounds - 2))]
-					playersDiv.append(Handlebars.templates['Group4'](@playerHandles))
+					playersDiv.append(Handlebars.templates['Group4'](@players))
 
 		_addRound: =>
 			if @numRounds < 6
@@ -115,7 +112,7 @@ define([
 					currentGroup.played = false
 					currentGroup.players = []
 					for j in [1..playersPerGroup]
-						currentGroup.players.push {name: null, winner: null}
+						currentGroup.players.push { _id: null, winner: null }
 					groups.push currentGroup
 				rounds[roundNumber] = { startDate: startDate, format: roundFormat, groups: groups }
 				roundNumber++
@@ -126,7 +123,7 @@ define([
 				currentGroup.played = false
 				currentGroup.players = []
 				for player in $(group).children()
-					currentGroup.players.push {name: $(player).val(), winner: null}
+					currentGroup.players.push { _id: $(player).val(), winner: null }
 				rounds[roundNumber - 1].groups.push currentGroup
 
 			@model.createTournament($('#name').val(), @selectedGame, rounds)

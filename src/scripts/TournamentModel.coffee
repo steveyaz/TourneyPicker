@@ -17,7 +17,6 @@ define([
 					type: 'GET'
 					url: 'https://lingbling.net/tournaments/' + @id
 					success: (data) =>
-						console.log data
 						@set('tournament', data)
 					error: (e) =>
 						console.log e

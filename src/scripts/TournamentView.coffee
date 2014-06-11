@@ -9,12 +9,10 @@ define([
 
 		initialize: ->
 			@model.on('change:tournament', @_render)
-			Handlebars.registerPartial("Tournament", Handlebars.templates["Tournament"])
 			@model.getTournament()
 
 		_render: =>
 			tournament = @model.get('tournament')
-			console.log tournament
 			@$el.html Handlebars.templates['Tournament'](tournament)
 
 )

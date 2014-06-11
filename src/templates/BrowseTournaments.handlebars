@@ -2,9 +2,4 @@
 {{#if this.canCreateTournament}}
 <button id="new-tournament" class="btn" type="button">New Tournament</button>
 {{/if}}
-<table>
-	<tr><th>Game</th><th>Name</th></tr>
-	{{#each this.tournaments}}
-		<tr><td>{{game.name}}</td><td><a href="#tournament/{{id}}">{{name}}</a></td></tr>
-	{{/each}}
-</table>
+{{> TournamentList}}

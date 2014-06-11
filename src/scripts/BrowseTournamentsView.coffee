@@ -13,6 +13,7 @@ define([
 		initialize: ->
 			@model.on('change:tournaments', @_render)
 			@model.on('change:user', @_render)
+			Handlebars.registerPartial("TournamentList", Handlebars.templates["TournamentList"])
 			@model.getTournaments()
 
 		_render: =>

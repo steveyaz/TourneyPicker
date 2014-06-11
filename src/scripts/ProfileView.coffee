@@ -13,6 +13,7 @@ define([
 		initialize: ->
 			@model.on('change:profile', @_render)
 			Handlebars.registerPartial("Profile", Handlebars.templates["Profile"])
+			Handlebars.registerPartial("TournamentList", Handlebars.templates["TournamentList"])
 			@model.getProfile()
 			@isEditing = false
 

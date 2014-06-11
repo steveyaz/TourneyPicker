@@ -19,9 +19,10 @@ define([
 				type: 'GET'
 				url: 'https://lingbling.net/tournaments'
 				success: (data) =>
-					@tournaments = data
-					if @tournaments? and @games
-						@_joinTournamentsWithGames()
+					@set('tournaments', data)
+					# @tournaments = data
+					# if @tournaments? and @games
+					# 	@_joinTournamentsWithGames()
 				error: (e) =>
 					console.log e
 

@@ -14,9 +14,7 @@
 	{{#if editable}}
 	<div>
 		<h3>Tournament Administration</h3>
-		{{#each tournaments}}
-			<p>{{name}}</p>
-		{{/each}}
+		{{> TournamentList}}
 	</div>
 	{{/if}}
 </div>

@@ -28,7 +28,7 @@ exports.findAll = function(req, res) {
 				var tournament = {};
 				tournament.name = tournaments[i].name
 				tournament.game = tournaments[i].game
-				tournament.id = tournaments[i]._id
+				tournament._id = tournaments[i]._id
 				data.push(tournament);
 			}
 			res.send(data);
@@ -45,6 +45,7 @@ exports.find = function(req, res) {
 				var data = {};
 				data.name = tournament.name
 				data.game = tournament.game
+				data._id = tournament._id
 				res.send(data);
 			} else {
 				res.send();
